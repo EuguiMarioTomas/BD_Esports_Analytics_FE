@@ -15,7 +15,8 @@ function Login() {
         setCargando(true);
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
+                `${import.meta.env.VITE_BACKKEND_URL}/api/auth/login`,
+                /*"http://localhost:5000/api/auth/login",*/
                 {
                     method: "POST",
                     headers: {
