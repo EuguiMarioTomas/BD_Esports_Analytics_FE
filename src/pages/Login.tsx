@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 
 function Login() {
@@ -43,29 +43,24 @@ function Login() {
             setCargando(false);
         }
     };
-
     return (
-        <div className="login-page">
-            <div className="login-container">
-                <h1>Esports Analytics</h1>
-                <p>Iniciar sesión</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">
-                            Usuario
-                        </label>
+        <div  style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", backgroundColor: "#0b0f19" }}>
+            <div style={{ background: "#1f2937", padding: "2.5rem", borderRadius: "10px", border: "1px solid #374151", width: "100%", maxWidth: "400px", boxShadow: "0 4px 20px rgba(0,0,0,0.5)" }}>
+                <h1 style={{ color: "#ffffff", marginBottom: "1.5rem", textAlign: "center" }}>Iniciar sesión</h1>
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                    <div>
+                        <label htmlFor="username" style={{ color: "#9ca3af", fontSize: "0.85rem", display: "block", marginBottom: "0.3rem" }}> Usuario </label>
                         <input
                             type="text"
                             id="username"
                             placeholder="Ingrese su usuario"
                             value={nombreUsuario}
-                            onChange={(event) =>
-                                setNombreUsuario(event.target.value)
-                            }
+                            onChange={(event) => setNombreUsuario(event.target.value)}
+                            style={{ width: "100%", padding: "0.75rem", borderRadius: "6px", backgroundColor: "#111827", border: "1px solid #374151", color: "#fff", outline: "none", boxSizing: "border-box" }}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">
+                        <label htmlFor="password"  style={{ color: "#9ca3af", fontSize: "0.85rem", display: "block", marginBottom: "0.3rem" }}>
                             Contraseña
                         </label>
                         <input
@@ -73,9 +68,8 @@ function Login() {
                             id="password"
                             placeholder="Ingrese su contraseña"
                             value={password}
-                            onChange={(event) =>
-                                setPassword(event.target.value)
-                            }
+                            onChange={(event) => setPassword(event.target.value)}
+                            style={{ width: "100%", padding: "0.75rem", borderRadius: "6px", backgroundColor: "#111827", border: "1px solid #374151", color: "#fff", outline: "none", boxSizing: "border-box" }}
                         />
                     </div>
                     {error && (
@@ -83,12 +77,26 @@ function Login() {
                             {error}
                         </p>
                     )}
-                    <button type="submit" disabled={cargando}>
+                    <button type="submit" disabled={cargando}
+                     style={{ 
+                      marginTop: "1rem",
+                      padding: "0.75rem",
+                      background: "linear-gradient(135deg, #6366f1 0%, #3b82f6 100%)",
+                      color: "#ffffff",
+                      border: "none",
+                      borderRadius: "6px",
+                      fontWeight: "600",
+                      cursor: cargando ? "not-allowed" : "pointer",
+                      opacity: cargando ? 0.7 : 1
+                  }}>
                         {cargando
                             ? "Iniciando sesión..."
                             : "Iniciar sesión"}
                     </button>
                 </form>
+                <p style={{ textAlign: "center", marginTop: "1.5rem", color: "#9ca3af", fontSize: "0.9rem" }}>
+              ¿No tienes cuenta? <Link to="/register" style={{ color: "#60a5fa", textDecoration: "none" }}>Crea una cuenta</Link>
+          </p>
             </div>
         </div>
     );
